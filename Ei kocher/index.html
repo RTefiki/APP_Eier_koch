@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>DA</title>
+  <link rel="stylesheet" href="CSS/Styles.css" type="text/css">
+</head>
+
+<body>
+
+  <div class="Container">
+     <h3>Eig time</h3>
+  <div class="center">
+     <img src="img/egg-1536990_960_720.jpg" width="100px" height="100px">
+  </div>
+
+
+    <div class="classe margin-top timer" id="startTime">
+      10:00
+    </div>
+
+      <button class="button" onclick="startTimer()">Start</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+let alarm = new Audio("alarm.mp3");
+
+function startTimer() {
+  let startTime = new Date().getTime()
+  let fiveMinutes = 1000 * 60 * 10;
+  let endTime = startTime + fiveMinutes;
+
+
+
+  setInterval(function() {
+    let timeLeft = endTime - new Date().getTime();
+
+    if(timeLeft > 00){
+      let minutes = timeLeft / (1000 * 60);
+      minutes = Math.floor(minutes);
+      let seconds = (timeLeft / 1000) % 60;
+      seconds = Math.round(seconds);
+      let text = "0" + minutes + " : " + seconds;
+      document.getElementById("startTime").innerHTML = text;
+    }else {
+      alarm.play();
+      document.getElementById("startTime").innerHTML ="00:00";
+    }
+
+  }, 1000);
+}
+
+</script>
+</body>
+
+</html>
